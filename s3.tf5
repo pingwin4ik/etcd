@@ -1,0 +1,21 @@
+resource "aws_s3_bucket" "cloudinit" {
+  bucket        = "pwin4ik"
+  acl           = "private"
+  force_destroy = true
+
+  policy = <<EOF
+{
+  "Version":"2008-10-17",
+  "Statement":[
+    {
+      "Sid":"AllowBackupBucket",
+      "Effect":"Allow",
+      "Principal": { "AWS": "*" },
+      "Action":"s3:*",
+      "Resource":"arn:aws:s3:::pwin4ik/*"
+
+    }
+  ]
+}
+    EOF
+}
